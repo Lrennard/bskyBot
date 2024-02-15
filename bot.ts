@@ -18,12 +18,16 @@ async function main() {
     });;
 
     const postContent = "Webhook Test";
+    console.log('postContent:', postContent); // Add this line for debugging
+
     await agent.post({
         text: postContent
     });
 
     const ntfyMessage = `Just Posted:\n${postContent}`;
-    exec(`curl -L -d "${ntfyMessage}" https://ntfy.domain.example/gitpush`, (error, stdout, stderr) => {
+    console.log('ntfyMessage:', ntfyMessage); // Add this line for debugging
+
+    exec(`curl -L https://ntfy.cornouiller.xyz/gitpush -d "${ntfyMessage}"`, (error, stdout, stderr) => {
         if (error) {
             console.error(`Error: ${error.message}`);
             return;
